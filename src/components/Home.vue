@@ -16,7 +16,11 @@
     </section>
     <section id="quote">
       <img :src="require('./../assets/Background-introduction.png')"  alt="" class="image-fullWidth">
+      <div class="container-center video-quote">
+        <iframe src="https://player.vimeo.com/video/274586157?title=0&byline=0&portrait=0" width="800" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
       <div class="container-center">
+<!-- <p><a href="https://vimeo.com/274586157">LET THEM DIE LIKE LOVERS</a> from <a href="https://vimeo.com/jesseatlas">jesse atlas</a> on <a href="https://vimeo.com">Vimeo</a>.</p> -->
         <div class="container-left">
           <div class="scrollable scrollable-text">
             <h1>Une histoire extraordinaire</h1>
@@ -78,12 +82,13 @@
       <img :src="require('./../assets/footer-background-mobile.png')" class="image-fullWidth mobileImage  clippedBackground" />
        <div class="container-center">
         <div class="container-wrapper">
-          <a href="#">
+          <h1 class="scrollable scrollable-text scrollable-absolute">Merci !</h1>
+          <!-- <a href="#">
             <img :src="require('./../assets/download-appstore.png')" />
           </a>
           <a href="#">
             <img :src="require('./../assets/download-googleplay.png')" />
-          </a>
+          </a> -->
         </div>
         <a href="https://www.gobelins.fr/" target="_blank">
           <img :src="require('./../assets/gobelins-logo.png')" class="footer-logo"/>
@@ -123,6 +128,7 @@ export default {
         const offsetTopYPourcent = offsetTopY / window.innerHeight
 
         const offsetBottomYPourcent = offsetBottomY / window.innerHeight
+        console.log(offsetTopYPourcent, offsetBottomYPourcent)
         if (offsetBottomYPourcent > 0.5 && offsetBottomYPourcent < 1.5) {
           scrollable.classList.add('isScrolled')
         } else if (scrollable.classList.contains('isScrolled') && (offsetBottomYPourcent < -1 || offsetBottomYPourcent > 3)) {
@@ -138,24 +144,31 @@ export default {
   mounted () {
     this.scrollables = document.querySelectorAll('.scrollable')
     window.addEventListener('scroll', this.onScroll)
-    lottie.loadAnimation({
-      container: document.querySelector('.quote-illustration'), // the dom element
-      animationData: require('./../assets/animations/hermes-evolution/evolution.json'),
-      path: './../assets/animations/hermes-evolution/image',
-      renderer: 'svg/canvas/html',
-      loop: true,
-      autoplay: true,
-      rendererSettings: {
-        scaleMode: 'noScale',
-        clearCanvas: false,
-        className: 'some-css-class-name'
-      }
-    })
+    // lottie.loadAnimation({
+    //   container: document.querySelector('.quote-illustration'), // the dom element
+    //   animationData: require('./../assets/animations/hermes-evolution/evolution.json'),
+    //   path: './../assets/animations/hermes-evolution/image',
+    //   renderer: 'svg/canvas/html',
+    //   loop: true,
+    //   autoplay: true,
+    //   rendererSettings: {
+    //     scaleMode: 'noScale',
+    //     clearCanvas: false,
+    //     className: 'some-css-class-name'
+    //   }
+    // })
   }
 }
 </script>
 
 <style lang="scss">
+
+section {
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
   .image {
     display: block;
     &-fullWidth {
@@ -315,7 +328,7 @@ export default {
       }
 
       .container-right {
-        margin-top: -4vw;
+        margin-top: -2vw;
         text-align: right;
         margin-bottom: 10vw;
       }
@@ -363,7 +376,7 @@ export default {
       justify-content: space-around;
 
       .map-wrapper-left {
-        margin-top: -30vw;
+        margin-top: -5vw;
         max-width: 80vw;
 
         .image-ipad {
@@ -372,7 +385,7 @@ export default {
         }
 
         .container-left {
-          margin-top: 80px;
+          margin-top: 15vw;
           margin-left: 30px;
         }
       }
@@ -485,6 +498,10 @@ export default {
     margin-top: -40vw;
     margin-bottom: 0;
     padding-bottom: 0;
+
+    h1 {
+      color: #fff;
+    }
 
     .container-center {
       position: absolute;
@@ -611,7 +628,7 @@ export default {
 
     #story-introduction {
       .image-ipad {
-        max-width: 800px;
+        // max-width: 800px;
       }
     }
 
@@ -641,8 +658,14 @@ export default {
     }
 
      #quote {
+      
       .container-center {
         justify-content: space-between;
+      &.video-quote {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
         flex-direction: row;
 
         .container-left,
@@ -658,5 +681,113 @@ export default {
         }
       }
     }
+  }
+
+  @media screen and (min-width: 1500px) {
+    #story-introduction .scrollable-ipad-story {
+      width: 1250px;
+      height: 900px;
+      border-radius: 56px;
+    }
+
+    #story-introduction .image-ipad {
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      font-size: 55px;
+    }
+
+    p {
+      font-size: 30px;
+    }
+
+    .container-center {
+      max-width: 800px;
+    }
+
+    #quote  {
+      .container-center {
+        max-width: 65%;
+        q {
+          font-size: 40px;
+        }
+      }
+
+    }
+
+    #map-introduction {
+      .container {
+        width: 700px;
+      }
+      .map-container {
+        .map-wrapper-right {
+          width: 700px;
+          max-width: none;
+        }
+        .map-wrapper-left {
+          margin-top: -20vw;
+          width: 1000px;
+          max-width: none;
+
+          .container-left {
+            margin-top: 6vw;
+          }
+        }
+      }
+    }
+
+    #card-introduction {
+      margin-top: -15vw;
+    }
+
+    .scrollable {
+      &.isScrolled {
+        &.scrollable {
+          &-ipad-story {
+            .image-ipad-scrolled {
+              transform: translateX(-5500px);
+            }
+          }
+        }
+      }
+    }
+
+    .scrollable-card {
+      &.card-helios {
+        top: 2vw;
+      }
+
+      &.card-aphrodite {
+        top: 20vw;
+      }
+
+      &.card-zeus {
+        top: 22vw;
+      }
+
+      &.card-artemis {
+        top: 23vw;
+      }
+    }
+
+    #footer {
+      margin-top: -50vw;
+      .container-center {
+        .container-wrapper {
+          margin-bottom: 30vw;
+        }
+      } 
+
+      a, .footer-logo {
+        width: 300px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+    } 
+
   }
 </style>
