@@ -100,9 +100,11 @@ import lottie from 'lottie-web'
 
 export default {
   name: 'App',
-  data: {
-    return () {
-      scrollables: []
+  data: function () {
+    return {
+      return () {
+        scrollables: []
+      }
     }
   },
   methods: {
@@ -113,7 +115,7 @@ export default {
         if (scrollable.classList.contains('scrollable-absolute')) {
           const elementbounding = scrollable.getBoundingClientRect()
           offsetBottomY = elementbounding.bottom
-          offsetTopY = (elementbounding.top + window.scrollY) - + window.scrollY
+          offsetTopY = (elementbounding.top + window.scrollY) - +window.scrollY
         } else {
           offsetBottomY = (scrollable.offsetTop + scrollable.clientHeight) - window.scrollY
           offsetTopY = scrollable.offsetTop - window.scrollY
@@ -131,9 +133,9 @@ export default {
         //   this.monthDate = month.getAttribute('data-month-date')
         // }
       })
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.scrollables = document.querySelectorAll('.scrollable')
     window.addEventListener('scroll', this.onScroll)
     lottie.loadAnimation({
@@ -148,7 +150,7 @@ export default {
         clearCanvas: false,
         className: 'some-css-class-name'
       }
-    });
+    })
   }
 }
 </script>
@@ -381,7 +383,6 @@ export default {
     }
   }
 
-
   #card-introduction {
     margin-top: -20vw;
     position: relative;
@@ -447,7 +448,6 @@ export default {
     transform: translateX(-10vw);
     transition: transform 6s;
   }
-
 
   #story-introduction {
     position: relative;
